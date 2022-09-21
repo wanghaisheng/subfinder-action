@@ -43,8 +43,8 @@ runs:
   using: "composite"
   steps:
     - run: |
-        [ ! -x /home/bugbounty/go/bin/subfinder ] && go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
-        ls /home/bugbounty/go/bin/ 
+        [ ! -x /home/runner/go/bin/subfinder ] && go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+        ls /home/runner/go/bin/ 
         [ ! -z ${{ inputs.domain }} ] && echo "domain=-d ${{ inputs.domain}}" >> $GITHUB_ENV
         [ ! -z ${{ inputs.list }} ] && echo "list=-dL ${{ inputs.list}}" >> $GITHUB_ENV
         [ ! -z ${{ inputs.config }} ] && echo "config=-config ${{ inputs.config }}" >> $GITHUB_ENV
@@ -52,8 +52,8 @@ runs:
         [ ! -z "${{ inputs.flags }}" ] && echo "flags=${{ inputs.flags }}" >> $GITHUB_ENV
         ${{ inputs.json }} && echo "json=-json" >> $GITHUB_ENV
         ${{ inputs.active }} && echo "active=-nW" >> $GITHUB_ENV
-        echo "/home/bugbounty/go/bin/" >> $GITHUB_PATH
-        cd /home/bugbounty/go/bin/subfinder  &&  ls
+        echo "/home/runner/go/bin/" >> $GITHUB_PATH
+        cd /home/runner/go/bin/subfinder  &&  ls
       shell: bash
 
     - run: |
