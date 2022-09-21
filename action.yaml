@@ -69,5 +69,12 @@ runs:
           ${{ env.json }} \
           ${{ env.flags }} \
           ${{ env.active }}
-       findomain --help
+        findomain \
+          ${{ env.domain }} \
+          ${{ env.list }} \
+          ${{ env.config }} \
+          ${{ env.output }} \
+          ${{ env.json }} \
+          ${{ env.flags }} \
+          ${{ env.active }}
       shell: bash
