@@ -58,6 +58,9 @@ runs:
         ${{ inputs.json }} && echo "json=-json" >> $GITHUB_ENV
         ${{ inputs.active }} && echo "active=-nW" >> $GITHUB_ENV
         echo "/home/runner/go/bin/" >> $GITHUB_PATH
+      shell: bash
+
+    - run: |
         subfinder \
           ${{ env.domain }} \
           ${{ env.list }} \
@@ -67,9 +70,13 @@ runs:
           ${{ env.flags }} \
           ${{ env.active }}
       shell: bash
-
     - run: |
-        ls
-
-
+        findomain \
+          ${{ env.domain }} \
+          ${{ env.list }} \
+          ${{ env.config }} \
+          ${{ env.output }} \
+          ${{ env.json }} \
+          ${{ env.flags }} \
+          ${{ env.active }}
       shell: bash
