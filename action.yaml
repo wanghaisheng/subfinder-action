@@ -55,8 +55,10 @@ runs:
       shell: bash
 
     - run: |
+        echo "subfinder" 
         subfinder -d ${{ inputs.domain}}  -o ${{ inputs.domain}}.log 
       shell: bash
     - run: |
+        echo "findomain" 
         findomain  -q -t ${{ inputs.domain}}
       shell: bash
