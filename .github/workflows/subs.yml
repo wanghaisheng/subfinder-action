@@ -1,0 +1,33 @@
+name: 🔎 SubFinder -babaloveyou
+
+on:
+    schedule:
+      - cron: '0 0 * * *'
+    workflow_dispatch:
+
+jobs:
+  subfinder-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+        with:
+          go-version: 1.17
+
+      - name: SubFinder - DNS Enumeration
+        uses: babaloveyou/subfinder-action@main
+        with:
+          domain: baidu.com
+
+      - name: GitHub Workflow artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: subfinder.log
+          path: subfinder.log
+ 
+      - name: download
+        uses: actions/download-artifact@v3
+        with:
+         name: my-artifact
+      - name: Display structure of downloaded files
+        run: ls -R
