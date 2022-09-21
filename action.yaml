@@ -43,22 +43,21 @@ runs:
   using: "composite"
   steps:
     - run: |
-        [ ! -x /home/runner/go/bin/subfinder ] && go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
-        [ ! -x /home/runner/go/bin/amass ] && go install -v github.com/OWASP/Amass/v3/...@master
-        [ ! -x /home/runner/go/bin/chaos ] && go install -v github.com/projectdiscovery/chaos-client/cmd/chaos@latest
-        curl -LO https://github.com/findomain/findomain/releases/latest/download/findomain-linux-i386.zip
+        [ ! -x /home/runner/go/bin/subfinder ] && go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest > /dev/null 2>&1
+        [ ! -x /home/runner/go/bin/amass ] && go install -v github.com/OWASP/Amass/v3/...@master > /dev/null 2>&1
+        [ ! -x /home/runner/go/bin/chaos ] && go install -v github.com/projectdiscovery/chaos-client/cmd/chaos@latest > /dev/null 2>&1
+        curl -LO https://github.com/findomain/findomain/releases/latest/download/findomain-linux-i386.zip 
         unzip findomain-linux-i386.zip
         chmod +x findomain
-        sudo mv findomain /home/runner/go/bin/findomain        
-    
+        sudo mv findomain /home/runner/go/bin/findomain
+        echo 'export findomain_virustotal_token="b865fc3287f443914f8cf5b03e8231de4bf9dbfbb6b151118851a22ae0044ee5"''>>  $GITHUB_ENV
+        echo 'export CHAOS_KEY="f6b4b28950475d7b6e07aca0ba7aef4fede0b64e08d3f936a015a716d7ed2cd0"'' >>  $GITHUB_ENV
         echo "/home/runner/go/bin/" >> $GITHUB_PATH
       shell: bash
 
     - run: |
-        echo "subfinder" 
         subfinder -d ${{ inputs.domain}}  -o ${{ inputs.domain}}.log 
       shell: bash
     - run: |
-        echo "findomain" 
         findomain  -q -t ${{ inputs.domain}}
       shell: bash
