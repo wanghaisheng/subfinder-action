@@ -44,6 +44,12 @@ runs:
   steps:
     - run: |
         [ ! -x /home/runner/go/bin/subfinder ] && go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+        [ ! -x /home/runner/go/bin/amass ] && go install -v github.com/OWASP/Amass/v3/...@master
+        [ ! -x /home/runner/go/bin/chaos ] && go install -v github.com/projectdiscovery/chaos-client/cmd/chaos@latest
+        curl -LO https://github.com/findomain/findomain/releases/latest/download/findomain-linux-i386.zip
+        unzip findomain-linux-i386.zip
+        chmod +x findomain
+        sudo mv findomain /home/runner/go/bin/findomain        
         [ ! -z ${{ inputs.domain }} ] && echo "domain=-d ${{ inputs.domain}}" >> $GITHUB_ENV
         [ ! -z ${{ inputs.list }} ] && echo "list=-dL ${{ inputs.list}}" >> $GITHUB_ENV
         [ ! -z ${{ inputs.config }} ] && echo "config=-config ${{ inputs.config }}" >> $GITHUB_ENV
@@ -63,4 +69,5 @@ runs:
           ${{ env.json }} \
           ${{ env.flags }} \
           ${{ env.active }}
+       findomain --help
       shell: bash
