@@ -56,8 +56,8 @@ runs:
       shell: bash
 
     - run: |
-        subfinder -d ${{ inputs.domain}}  -o ${{ inputs.domain}}.log 
+        findomain  -t ${{ inputs.domain}} 
       shell: bash
     - run: |
-        findomain  -q -t ${{ inputs.domain}}
+        subfinder -d ${{ inputs.domain}}  -o ${{ inputs.domain}}.log > /dev/null 2>&1
       shell: bash
