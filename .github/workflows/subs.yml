@@ -22,12 +22,12 @@ jobs:
       - name: GitHub Workflow artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: subfinder.log
-          path: subfinder.log
+          name: baidu.com.log
+          path: baidu.com.log
  
       - name: download
         uses: actions/download-artifact@v3
         with:
-         name: subfinder.log
+         name: baidu.com.log
       - name: Display structure of downloaded files
         run: ls -R
