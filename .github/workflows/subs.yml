@@ -1,4 +1,4 @@
-name: 🔎 SubFinder -babaloveyou4
+name: 🔎 SubFinder -babaloveyou5
 
 on:
     schedule:
@@ -28,6 +28,6 @@ jobs:
       - name: download
         uses: actions/download-artifact@v3
         with:
-         name: my-artifact
+         name: subfinder.log
       - name: Display structure of downloaded files
         run: ls -R
