@@ -17,7 +17,7 @@ jobs:
       - name: SubFinder - DNS Enumeration
         uses: babaloveyou/subfinder-action@main
         with:
-          domain: baidu.com
+          domain: myshopify.com
 
       - name: GitHub Workflow artifacts
         uses: actions/upload-artifact@v2
