@@ -1,4 +1,4 @@
-name: 🔎 SubFinder -babaloveyou7
+name: 🔎 SubFinder - DNS Enumeration
 
 on:
     # schedule:
@@ -15,19 +15,12 @@ jobs:
           go-version: 1.17
 
       - name: SubFinder - DNS Enumeration
-        uses: babaloveyou/subfinder-action@main
+        uses: projectdiscovery/subfinder-action@main
         with:
           domain: myshopify.com
 
       - name: GitHub Workflow artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: baidu.com.log
-          path: baidu.com.log
- 
-      - name: download
-        uses: actions/download-artifact@v3
-        with:
-         name: baidu.com.log
-      - name: Display structure of downloaded files
-        run: ls -R
+          name: subfinder.log
+          path: subfinder.log
